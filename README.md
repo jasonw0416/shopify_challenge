@@ -10,16 +10,16 @@ I have developed this program using Node.js, Express.js, Socket.io and MongoDB
 
 ## Running on local host:
 Please download the necessary modules
-'''
+```
 npm install
 npm install express socket.io
 npm install nodemon --save-dev
-'''
+```
 
 Run on localhost:8080
-'''
+```
 npm run dev
-'''
+```
 
 ## Details about this web application ##
 ***
