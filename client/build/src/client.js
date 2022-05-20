@@ -1,7 +1,7 @@
 const sock = io();
 
 
-
+// send 'create' signal to the server
 const create = (e) => {
     e.preventDefault();
     const input = document.querySelector('#create-chat');
@@ -32,6 +32,7 @@ document
     .addEventListener('submit', create);
 
 
+// send 'delete' signal to the server
 const del = (e) => {
     e.preventDefault();
     const input = document.querySelector('#delete-chat');
@@ -48,6 +49,7 @@ document
     .querySelector('#delete-form')
     .addEventListener('submit', del);
 
+// send 'update' signal to the server
 const update = (e) => {
     e.preventDefault();
     const input1 = document.querySelector('#update-chat1');
@@ -81,6 +83,7 @@ document
     .querySelector('#update-form')
     .addEventListener('submit', update);
 
+// createTable function used for both inventory list (deleted or present items)
 function createTable(data, deletedTable) {
     var table = document.createElement("table");
     var tBody = document.createElement("tbody");
@@ -159,6 +162,7 @@ function createTable(data, deletedTable) {
     return table;
 }
 
+// received data (present items) from server which is from the database MongoDB
 sock.on('listed', (data) => {
     if (data.length > 0){
         
@@ -176,6 +180,7 @@ sock.on('listed', (data) => {
     
 });
 
+// received data (deleted items) from server which is from the database MongoDB
 sock.on('deletedList', (data) => {
     if (data.length > 0){
         
@@ -193,7 +198,7 @@ sock.on('deletedList', (data) => {
 })
 
 
-
+// send 'undelete' signal to the server
 const undel = (e) => {
     e.preventDefault();
     const input = document.querySelector('#undelete-chat');
@@ -207,18 +212,22 @@ document
     .addEventListener('submit', undel);
 
 
+// title for the new item already exist
 sock.on('title-exists', () => {
     alert("The title that you wish to create already exists");
 });
 
+// received signal from the server that the request was successfully created
 sock.on('created', () => {
     alert("successfully created");
 });
 
+// received signal from the server that the request was successfully deleted
 sock.on('deleted', () => {
     alert("successfully deleted");
 });
 
+// title for the requested item does not exist
 sock.on('title-dne', () => {
     alert("the title does not exist");
 });

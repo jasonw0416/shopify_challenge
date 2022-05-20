@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// field for the data using Mongoose Schema
 const itemSchema = new Schema({
     title: {
         type: String,

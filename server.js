@@ -34,6 +34,7 @@ io.on('connection', (sock) => {
     io.emit('message', text);
   });
 
+  // create new Item and POST to MongoDB
   async function creation(text, text1, text2, text3){
     const item = new Item({
       title: text,
@@ -52,6 +53,7 @@ io.on('connection', (sock) => {
       });
   }
 
+  // function between actual creation... check if the item with same title already exists
   async function creating(text, text1, text2, text3) {
     await Item.find({title: text})
       .then((result) =>  {
@@ -67,32 +69,15 @@ io.on('connection', (sock) => {
       });
   }
 
+  // received 'create' signal from client
   sock.on('create', (text, text1, text2, text3) => {
     console.log('creating...');
     creating(text, text1, text2, text3);
   });
 
-  // async function deletion(text, text1){
-  //   await Item.deleteOne({title: text})
-  //   .catch((err) => {
-  //     console.log("Error in deleting in update: ", err);
-  //   });
-  // }
-
+  // delete Item by changing the "deleted" field in MongoDB
   async function deleting(text, text1) {
-    /*Item.find({title: text})
-      .then((result) => {
-        if (result.length > 0){
-          deletion(text, text1);
-          listing();
-        }
-        else{
-          sock.emit("title-dne");
-        }
-      })
-      .catch((err) => {
-        console.log("Error in finding in delete: ", err);
-      });*/
+    
     const res = await Item.updateOne({title: text}, {$set: {deletionComment: text1, deleted: true}})
     .catch((err) => {
       console.log("Error in deleting: ", err);
@@ -106,12 +91,14 @@ io.on('connection', (sock) => {
     }
   }
 
+  // received 'delete' signal from client
   sock.on('delete', (text, text1) => {
       console.log('deleting...');
       deleting(text, text1);
   });
 
 
+  // update the Item in MongoDB
   async function update(text1, text2, text3, text4, text5){
     await Item.deleteOne({title: text1})
     .catch((err) => {
@@ -121,6 +108,7 @@ io.on('connection', (sock) => {
   }
   
 
+  // received 'update' signal from the client
   sock.on('update', (text1, text2, text3, text4, text5) => {
       console.log('updating...');
       Item.find({title: text1})
@@ -160,10 +148,12 @@ io.on('connection', (sock) => {
         });
   });
 
+  // received 'list' signal from the client
   sock.on('list', function(){
       listing();
   });
 
+  // undelete the Item by changing the "deleted" field
   async function undeleting(text) {
     const res = await Item.updateOne({title: text}, {$set: {deletionComment: "", deleted: false}})
     .catch((err) => {
@@ -178,11 +168,13 @@ io.on('connection', (sock) => {
     }
   }
   
+  // receieved 'undelete' signal from the client
   sock.on('undelete', (text) => {
       console.log('undeleting...');
       undeleting(text);
   });
 
+  // list all the Items, separate them into whether the item was deleted or not
   async function listing(){
     await Item.find({deleted: false})
       .then((result) => {
@@ -202,6 +194,7 @@ io.on('connection', (sock) => {
   }
 
 
+  // first list the item
   listing();
 
   setInterval(listing, 2000);
