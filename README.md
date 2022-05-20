@@ -4,6 +4,8 @@
 ## Please access the website on the following link:
 https://wonjunlee-shopify-challenge.herokuapp.com
 
+https://replit.com/@WonjunLee3/shopifychallenge#.replit
+
 There is no additional steps or downloads you have to do to launch this web application.
 
 I have developed this program using Node.js, Express.js, Socket.io and MongoDB
