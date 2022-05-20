@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>RPS</title>
+    <link rel="stylesheet" href="/styles/main.css">
+  </head>
+  <body>
+    <div class="rps-wrapper">
+
+      <div class="button-wrapper">
+
+
+        <form id="create-form">
+          <p>Title <input id="create-chat" />   
+            Price <input type="number" id="create-price" />  
+            Stock <input type="number" id="create-stock" />
+            Description <input id="create-description" />
+            <button id="create"> CREATE</button></p>
+        </form>
+        <form id="delete-form">
+          <p>Title <input id="delete-chat" />
+            Deletion Comment <input id="deletion-comment" />
+            <button id="delete"> DELETE</button></p>
+        </form>
+        <form id="update-form">
+          <p>Old Title <input id="update-chat1" />  
+            New Title <input id="update-chat2" /> 
+            New Price <input type="number" id="update-price" /> 
+            New Stock <input type="number" id="update-stock" />
+            New Description <input id="update-description" /> 
+            <button id="update">UPDATE</button></p>
+        </form>
+        
+      </div>
+
+      <div>
+        <h4>Inventory of Present Items</h4>
+        <div id="tables"></div>
+      </div>
+      
+
+      <form id="undelete-form">
+        <p>Title <input id="undelete-chat" />
+          <button id="undelete"> UNDELETE</button></p>
+      </form>
+
+      <div>
+        <h4>Inventory of Deleted Items</h4>
+        <div id="deletedTables"></div>
+      </div>
+      
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/src/client.js"></script>
+  </body>
+</html>
