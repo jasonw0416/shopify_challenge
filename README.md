@@ -58,11 +58,11 @@ For the inventory of deleted items, deletion comment also shows up.
 One Additional Feature (Deletion Comments and Undeletion):
 ---
 
-![Screenshot](/Images/readme_image3.png?)
+![Screenshot](/Images/readme_image5.png?)
 
 You can add deletion comment when deleting an item. This comment will show up in the inventory of deleted items.
 
-![Screenshot](/Images/readme_image3.png?)
+![Screenshot](/Images/readme_image6.png?)
 
 You need to fill in the title of the item you wish to undelete. 
 
