@@ -2,7 +2,7 @@
 
 
 ## Please access the website on the following link:
-https://jasonw0416shopifybackend.herokuapp.com
+[https://jasonw0416shopifybackend.herokuapp.com](https://wonjunlee-shopify-challenge.herokuapp.com)
 
 There is no additional steps or downloads you have to do to launch this web application.
 
